@@ -208,7 +208,7 @@ class User:
             <body>
                 <h1>Welcome {self.username.capitalize()}!</h1>
                 <h2>Click The BUTTON Below To Verify Your Account At SPRINGREEN!</h2>
-                <form action="/auth/verify" method="GET">
+                <form action="{domain}/auth/verify" method="GET">
                     <input type="hidden" name="vfcode" value="{vcode}"></input>
                     <input type="hidden" name="username" value="{self.username}"></input>
                     <input type="submit" value="VERIFY 👍" style="font-size: 20px;">
