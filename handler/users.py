@@ -469,4 +469,3 @@ class User:
 
         return True
 
-User.clean_all()
