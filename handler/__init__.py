@@ -5,7 +5,7 @@ import os
 import time
 
 def generate_file_path():
-    main_path = "/static/audios/"
+    main_path = "static/audios/"
     files = [
         file for path, dir, file in os.walk(main_path)
       ]
