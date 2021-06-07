@@ -1,0 +1,3 @@
+flask
+pyttsx3
+sqlite3
