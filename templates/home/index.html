@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SPRINGREEN is created to bring all the possible features for you for as low cost as possible, mostly for FREE. Find what you want, if you can't create one with us! ">
+  <meta name="keywords" content="springreen, sprin-g-reen, telegram bots, bot, sprin, chat room, chat, rooms, spg, world changers">
+  <title>SPRINGREEN</title>
+  
+  <script src="/static/HTML_ASSETS/jquery.js"></script>
+  <link rel="stylesheet" href="/static/HTML_ASSETS/fontawesome-free-5.15.1-web/css/all.css">
+  <link rel="stylesheet" href="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/home-dark.css">
+  <script src="/static/HTML_ASSETS/p5/p5.min.js"></script>
+  <script src="/static/HTML_ASSETS/node_modules/twitter-bootstrap/js/bootstrap-alert.js"></script>
+  
+  <script src="/static/js/home.js"></script>
+  <script>function hideLoader(){
+    setTimeout(
+      function(){document.querySelector('#loader').remove()},
+      1550
+    )
+  }</script>
+</head>
+<body onload="hideLoader()">
+  <div id="loader">
+    <svg width="100" height="100" view-box="0 0 100 100">
+      <path
+      stroke="white"
+      d="M 7 74, L 21 34, L 50 3, L 80 34, L 93 73, L 50 88, L 7 74, L 50 43, L 93 73, L 80 34, L 50 53, L 21 34, L 50 3, L 50 43, L 57 48, L 50 53, 50 88"
+      ></path>
+    </svg>
+  </div>
+
+
+  {% if message %}
+    <script>
+      setTimeout(function(){ alert("{{ message }}") }, 3000)
+    </script>
+  {% endif %}
+
+  <!-- nav -->
+  <div class="nav">
+    <!-- <img src="/favicon.ico" alt="LOGO" class="logo" /> -->
+    {% if username %}
+      <a class="link" href="/"><span class="lt">HOME</span> <i class="fa fa-home"></i></a>
+      <a class="link" href="/contact"><span class='lt'>CONTACT</span> <i class="fa fa-mail-bulk"></i></a>
+      <a class="link" href="/profile"><span class="lt">PROFILE</span><i class="fa fa-user-check"></i></a>
+      <a class="link" href="/auth/signout"><span class="lt">SIGNOUT</span><i class="fa fa-sign-in-alt"></i></a>
+    {% else %}
+      <a class="link" href="/"><span class="lt">HOME</span> <i class="fa fa-home"></i></a>
+      <a class="link" href="/contact"><span class='lt'>CONTACT</span> <i class="fa fa-mail-bulk"></i></a>
+      <a class="link" href="/login"><span class="lt">LOGIN</span><i class="fa fa-user-check"></i></a>
+      <a class="link" href="/signup"><span class="lt">SIGNUP</span><i class="fa fa-sign-in-alt"></i></a>
+    {% endif %}
+
+  </div>
+  
+
+  <!-- the first card -->
+  <section class="card-container active">
+    <main class="card">
+
+      <div class="tab">HOME</div>
+
+      <header class="card-title">SPRINGREEN</header>
+      
+      <article class="card-content">
+        Click the 'next' button to see more.
+      </article>
+
+      <div class="next-btn">NEXT</div>
+
+    </main>
+
+    <div class="vision" id="logo">
+      
+    </div>
+
+  </section>
+
+
+  
+  <section class="card-container">
+    <main class="card">
+
+      <div class="tab">Bots</div>
+
+      <header class="card-title">TELEGRAM BOTS</header>
+      
+      <article class="card-content">
+        get fully functioning <a href="https://telegram.org">telegram</a> bots and userbots for your account now! the bots are created, tested and deployed for you. Contact any of our developers <a href="https://telegram.me/parvat_r">parvat</a>, <a href="https://telegram.me/rohithaditya">rohithaditya</a> or have a look at <a href="https://telegram.me/venilabots">springreen bots channel</a> and <a href="https://telegram.me/venilabots1">springreen discussion group</a> in telegram to get a bot for you now!.
+      </article>
+
+      <div class="next-btn">NEXT</div>
+
+    </main>
+
+    <div class="vision">
+      <img src="/static/images/artificial-intelligence-isometric-ai-robot-mobile-phone-screen-chatbot-app/767.jpg" />
+    </div>
+  </section>
+
+
+
+  <section class="card-container">
+    <main class="card">
+
+      <div class="tab">TTS</div>
+
+      <header class="card-title">TEXT TO SPEECH (tts)</header>
+      
+      <article class="card-content">
+        a place where you can convert a paragraph of text into speech or audio in <a href="https://en.wikipedia.org/wiki/MP3">.mp3</a> format. it is always free to use any time anywhere. you can convert your text into speech and download the audio file.
+        click <a href="/tts">here</a> to navigate to tts page or type <a href="/tts"><span class="domain-origin"></span>/tts</a>
+      </article>
+
+      <div class="next-btn">NEXT</div>
+
+    </main>
+
+    <div class="vision invert">
+      <img src="/static/images/people_with_mobile_phones_using_smart_voice_assistant_software_man/10131.jpg">
+    </div>
+  </section>
+
+
+
+
+  <section class="card-container">
+
+    <div class="card">
+      <div class="tab">JOIN</div>
+
+      <div class="card-title">JOIN or CONTRIBUTE US</div>
+
+      <div class="card-content">
+        We are glad to say that there are currently only two people working for springreen, and one works on web and other on telegram bots. you can help us by donating with <a href="https://paypal.me/rohit404">paypal</a>. you can also join us and work with us on springreen. to join us contact us on telegram: <a href="https://telegram.me/parvat_r">@Parvat_R</a>.
+      </div>
+
+      <div class="next-btn">NEXT</div>
+
+    </div>
+    
+  </section>
+
+
+
+  <section class="card-container">
+    <main class="card">
+
+      <div class="tab">FOOTER</div>
+
+      <header class="card-title">FOOTER</header>
+      
+      <article class="card-content">
+        <ul>
+          <h3>Contact Us</h3>
+          <li>Telegram: <a href="https://telegram.me/springreenoff">@springreenoff</a></li>
+          <li>Github: <a href="https://github.com/sprin-g-reen">sprin-g-reen</a></li>
+          <li>Mail <a href="mailto:admin@springreen.me">admin@springreen.me</a></li>
+          <li>Donate <a href="https://paypal.me/rohit404">Paypal</a></li>
+        </ul>
+        <ul>
+          <h5>Attribution</h5>
+          <li>Freepik: <a href="https//freepik.com/">images</a></li>
+          <li>Python: <a href="http://python.org">programming language</a></li>
+          <li>Flask: <a href="https://flask.palletsprojects.com/">web development framework</a></li>
+        </ul>
+      </article>
+
+      <div class="next-btn footer">NEXT</div>
+
+    </main>
+
+    
+  </section>
+
+<script>
+  function setup() {
+    var myCanvas = createCanvas(300, 300, WEBGL);
+    myCanvas.parent("#logo");
+  }
+  
+  function draw() {
+    background(9,9,9);
+    var rx = 70;
+    var ry = 77.4;
+    rotateX(rx * 0.01);
+    rotateY(frameCount * 0.01);
+    stroke(255,255,255);
+    fill(0,255,205,100);
+    box(150);
+  }
+  </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Signup | SPRINGREEN</title>
+  <script src="/static/HTML_ASSETS/jquery.js"></script>
+  <script src="/static/HTML_ASSETS/node_modules/twitter-bootstrap/js/bootstrap-alert.js"></script>
+  <script src="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.js"></script>
+  <script src="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.js"></script>
+  <script src="/static/js/default.js"></script>
+
+  <link rel="stylesheet" href="/static/HTML_ASSETS/fontawesome-free-5.15.1-web/css/all.css">
+  <link rel="stylesheet" href="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/defaults.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+
+
+</head>
+<body>
+
+  <div class="nav">
+        
+    <a class="link" href="/"><span class="lt">HOME</span> <i class="fa fa-home"></i></a>
+    <a class="link" href="/contact"><span class='lt'>CONTACT</span> <i class="fa fa-mail-bulk"></i></a>
+    <a class="link" href="/login"><span class="lt">LOGIN</span><i class="fa fa-user-check"></i></a>
+    <a class="link" href="/signup"><span class="lt">SIGNUP</span><i class="fa fa-sign-in-alt"></i></a>
+    <!-- <a class="link" href="javascript:void(0)" id="mt"><span class="lt" id="mtt">DARK MODE</span><i id="mti" class="fa fa-moon"></i></a> -->
+
+  </div>
+
+  <div class="page">
+
+    <div class="head">
+      <h2>SIGNUP<span> - SPRINGREEN</span></h2>
+      <h5>Enter your details to create a new account in springreen.</h5>
+    </div>
+
+    <div class="alert-area" width='100vw'>
+      
+    </div>
+
+    <form>
+
+      <div>
+        <label for="username">Username</label>
+        <input type="text" pattern="[a-zA-Z0-9_]{6,25}" name="username" id="username" placeholder="Username" required />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <div class="pwd-show">
+          <input type="password" name="password" id="password" placeholder="Password" required />
+          <i class="fa fa-eye"></i>
+        </div>
+      </div>
+      <div>
+        <label for="rassword">Confirm Password</label>
+        <input type="password" name="rassword" id="rassword" placeholder="Confirm Password" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required />
+      </div>
+      <div>
+        <label for="rmail">Recovery Email</label>
+        <input type="email" name="rmail" id="rmail" placeholder="Recovery Email" required />
+      </div>
+      
+      
+      <button type="button" id="login"><span class="spinner"></span>Signup</button>
+
+    </form>
+
+  </div>
+
+
+<script>
+
+function createAlert(title, message, type)
+{
+  var alertArea = document.querySelector('.alert-area')
+  var sample = `
+    <div class="alert alert-${type} alert-dismissible container-fluid">
+      <strong>${title}</strong> ${message}
+      <span type="button" class="btn-close" data-dismiss="alert">&times;</span>
+    </div>`
+
+  var main = document.createElement('div')
+  main.classList.add(`alert`, `alert-${type}`, "alert-dismissible", "container-fluid")
+  main.innerHTML = `<strong>${title}</strong> ${message}
+      <span type="button" class="btn-close" data-dismiss="alert">&times;</span>`
+    
+  alertArea.append(main)
+  setTimeout(function() {
+    main.remove()
+  }, 5005)
+  
+}
+
+$(document).ready(function()
+{
+  const name_el = $('#username');
+  const pwrd_el = $('#password');
+  const cwrd_el = $('#rassword');
+  const mail_el = $('#email');
+  const rail_el = $('#rmail');
+  const login = $('#login')
+  login[0].disabled = true;
+
+  $('input').on('input', e=>
+  {
+    const target = e.target;
+    const value = target.value;
+    const type = target.type;
+    // trim the value, i.e., remove whitespace
+    e.target.value = value.trim();
+    // if (type === "text")
+    // {
+    //   target.value = target.value.match(/[a-zA-Z0-9]{6-25}/)[0]
+    // }
+
+    // handle the text
+    
+    if (value.length < 6)
+    {
+      document.querySelectorAll('input').forEach(element => {
+        if (element.type !== type) element.disabled = true;
+        if (element.id === "password") $('input[type="password"]').disabled = false;
+      });
+      $('#login').text("Username should be at least 6 characters long!");
+      $('#login')[0].disabled = true;
+    }
+    else
+    {
+      document.querySelectorAll('input').forEach(element => {
+        if (element.type !== type) element.disabled = false;
+      });
+      $('#login').text("Login");
+      $('#login')[0].disabled = false;
+    }
+    console.log(type, value);
+  })
+
+  $('#login').click(function()
+  {
+    let name = name_el.val();
+    let pwrd = pwrd_el.val();
+    let cwrd = cwrd_el.val();
+    let mail = mail_el.val();
+    let rail = rail_el.val();
+    let pattern = /[a-zA-Z0-9]{6,25}/;
+    // check
+    if (name.length < 6)
+    {
+      createAlert("Error!", "Username Should Be At Least 6 Characters Long", "danger");
+      $('#username').focus();
+      return false  
+    }
+    if (pwrd.length < 6){
+      createAlert("Error!", "Password Should Be At Least 6 Characters Long", "danger");
+      $('#password').focus();
+      return false
+    }
+    if (cwrd.length < 6){
+      createAlert("Error!", "Passwords Donot Match!", "danger");
+      $('#rassword').focus();
+      return false
+    }
+    if (mail.length < 6){
+      createAlert("Error!", "Email Should Be At Least 6 Characters Long", "danger");
+      $('#email').focus();
+      return false
+    }
+    if (pwrd !== cwrd){
+      createAlert("Error!", "Passwords Donot Match!", "danger");
+      $('#rassword').focus();
+      return false
+    }
+    if (mail === rail){
+      createAlert("Error!", "Email Should Not Be Same As Recovery Email!", "danger");
+      $('#rmail').focus();
+      return false
+    }
+
+    // post
+    $.ajax({
+      type: 'POST',
+      url: window.location.origin + '/auth/signup',
+      data: {
+        username: name,
+        password: pwrd,
+        email: mail,
+        rmail: rail,
+        origin: window.location.origin
+      },
+      success: function(data)
+      {
+        var error = data.error;
+        if (error !== "")
+        {
+          var result = data.result;
+          console.log(data)
+          if (result === "username") {createAlert("Error!", "Username already taken!", "danger");}
+          if (result === "email") {createAlert("Error!", "Email already taken!", "danger");}
+          
+        }
+        else
+        {
+          createAlert("Success!", "Your details were added successfully!", "success");
+          document.write("Your account was successfully created! Check your email to verify your account. Donot forget to check the spam and trash!")
+        }
+      }
+    })
+  })
+
+
+
+  $('.fa-eye').click(function(e)
+  {
+    e.target.classList.toggle('active');
+    
+    var pwd = document.querySelector('#password');
+    if (pwd.type === "password")
+    {
+      pwd.type = "text"
+    }
+    else
+    {
+      pwd.type = "password"
+    }
+  })
+
+
+
+})
+
+</script>
+</body>
+</html>

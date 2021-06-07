@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Login | SPRINGREEN</title>
+  <script src="/static/HTML_ASSETS/jquery.js"></script>
+  <script src="/static/HTML_ASSETS/node_modules/twitter-bootstrap/js/bootstrap-alert.js"></script>
+  <script src="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.js"></script>
+  <script src="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.js"></script>
+  <script src="/static/js/default.js"></script>
+
+  <link rel="stylesheet" href="/static/HTML_ASSETS/fontawesome-free-5.15.1-web/css/all.css">
+  <link rel="stylesheet" href="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/defaults.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+
+
+</head>
+<body>
+  
+  <div class="nav">
+        
+    <a class="link" href="/"><span class="lt">HOME</span> <i class="fa fa-home"></i></a>
+    <a class="link" href="/contact"><span class='lt'>CONTACT</span> <i class="fa fa-mail-bulk"></i></a>
+    <a class="link" href="/login"><span class="lt">LOGIN</span><i class="fa fa-user-check"></i></a>
+    <a class="link" href="/signup"><span class="lt">SIGNUP</span><i class="fa fa-sign-in-alt"></i></a>
+    <a class="link" href="javascript:void(0)" id="mt"><span class="lt" id="mtt">DARK MODE</span><i id="mti" class="fa fa-moon"></i></a>
+
+  </div>
+
+  <div class="alert-area" width='100vw'>
+      
+  </div>
+
+  <div class="page">
+
+    <div class="head">
+      <h2>Login<span> - SPRINGREEN</span></h2>
+      <h5>We are glad to have you back! Please enter your details below.</h5>
+    </div>
+
+    <form>
+
+      <div>
+        <label for="username">Username</label>
+        <input type="text" pattern="[a-zA-Z0-9_]{6,25}" name="username" id="username" placeholder="Username" required />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required />
+      </div>
+      
+      
+      <button type="button" id="login"><span class="spinner"></span>Login</button>
+      
+
+    </form>
+
+  </div>
+
+
+<script>
+
+function createAlert(title, message, type)
+{
+  var alertArea = document.querySelector('.alert-area')
+  var sample = `
+    <div class="alert alert-${type} alert-dismissible container-fluid">
+      <strong>${title}</strong> ${message}
+      <span type="button" class="btn-close" data-dismiss="alert">&times;</span>
+    </div>`
+
+  var main = document.createElement('div')
+  main.classList.add(`alert`, `alert-${type}`, "alert-dismissible", "container-fluid")
+  main.innerHTML = `<strong>${title}</strong> ${message}
+      <span type="button" class="btn-close" data-dismiss="alert">&times;</span>`
+    
+  alertArea.append(main)
+  setTimeout(function() {
+    main.remove()
+  }, 5005)
+  
+}
+
+$(document).ready(function()
+{
+  const name_el = $('#username');
+  const pwrd_el = $('#password');
+  const mail_el = $('#email');
+  const login = $('#login')
+
+  $('input').on('input', e=>
+  {
+    const target = e.target;
+    const value = target.value;
+    const type = target.type;
+    // trim the value, i.e., remove whitespace
+    e.target.value = value.trim();
+
+    // handle the text
+    
+    if (value.length < 6)
+    {
+      document.querySelectorAll('input').forEach(element => {
+        if (element.type !== type) element.disabled = true;
+      });
+    }
+    else
+    {
+      document.querySelectorAll('input').forEach(element => {
+        if (element.type !== type) element.disabled = false;
+      });
+    }
+    console.log(type, value);
+})
+
+  $('#login').click(function()
+  {
+    let name = name_el.val();
+    let pwrd = pwrd_el.val();
+    let mail = mail_el.val();
+    console.log(pwrd)
+    if (name.lenght < 6){ createAlert('Error!', "Username should be atleast 6 charecters long!", "danger"); return false }
+    if (pwrd.lenght < 6){ createAlert('Error!', "Email should be atleast 6 charecters long!", "danger"); return false }
+    if (mail.lenght < 6){ createAlert('Error!', "Password should be atleast 6 charecters long!", "danger"); return false }
+
+    $.ajax({
+      type: 'POST',
+      url: window.location.origin + '/auth/login',
+      data: {
+        username: name,
+        password: pwrd,
+        email: mail
+      },
+      success: function(data)
+      {
+        var error = data.error;
+        if (error != ""){ 
+          var result = data.result;
+          console.log(result)
+          if( result === "username" ) {createAlert("Error!", "Username not found!", "danger");}
+          if( result === "email" ) {createAlert("Error!", "Incorrect email!", "danger");}
+          if( result === "password" ) {createAlert("Error!", "Incorrect Password!", "danger");}
+          if( result === "verification" ) {createAlert("Error!", `Your Account Is Not Verified! Check <a href='${window.location.origin}/problem/verification'>${window.location.origin}/problem/verification</a> if you did not get the verification mail!`, "danger");}
+
+        }
+        else
+        {
+          createAlert("Success!", "Your Are Logged In!", "success");
+          window.location.href = window.location.origin;
+        }
+      }
+    })
+  })
+})
+
+</script>
+</body>
+</html>
