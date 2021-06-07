@@ -9,7 +9,7 @@ def generate_file_path():
     files = [
         file for path, dir, file in os.walk(main_path)
       ]
-    files = files[0] if len(files > 0) else []
+    files = files[0] if len(files) > 0 else []
     print(files)
     if len(files) < 1:
       return main_path + "temp_audio_0.mp3"
