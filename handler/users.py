@@ -223,7 +223,7 @@ class User:
             server.sendmail(sender_email, receiver_email, message.as_string())
             server.quit()
             
-        return f'<a href="{domain}/auth/verify?vcode={vcode}&uname={username}">http://127.0.0.1:7000/verify?vcode={vcode}&uname={username}</a>'
+        return f'<a href="{domain}/auth/verify?vcode={vcode}&uname={self.username}">http://127.0.0.1:7000/verify?vcode={vcode}&uname={self.username}</a>'
 
 
 
