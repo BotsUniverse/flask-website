@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center; 
+  justify-content: space-evenly;
+
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100vh;
+  background-color: #090909f0;
+}
+
+.page {
+  width: 80%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center; 
+  justify-content: space-evenly;
+
+  flex-direction: column;
+
+  color: #ffff;
+}
+
+form {
+  width: 100%;
+  height: 40vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+form textarea {
+  width: 100%;
+  height: 40vh;
+  min-height: 300px;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 0px 20px hsl(0, 100%, 100%, .3);
+  color:hsl(0, 100%, 100%, 1);
+  padding: .5rem;
+}
+
+form button {
+  padding: .45rem 1.27rem;
+  font-size: 1.54rem;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: transparent;
+  border-radius: 20px;
+  background-image: linear-gradient(45deg, aqua, blue);
+  background-size: 0%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0px 0px 20px hsl(0, 100%, 100%, .3);
+  transition: background-size .3s ease-out, color .2s ease, transform .01s;
+  cursor: pointer;
+}
+
+form button:hover {
+  color: black;
+  background-size: 100%;
+  box-shadow: 0px 0px 20px hsl(0, 100%, 100%, .3); 
+}
+form button:active {
+  transform: scale(.91);
+}
+
+.loading
+{
+  width: 50px;
+  min-height: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 10px solid #fff1;
+  border-top: 10px solid #fff;
+  animation-name: spin;
+  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg)}
+}

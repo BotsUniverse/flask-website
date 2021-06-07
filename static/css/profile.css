@@ -1,0 +1,137 @@
+* {
+  position: relative;
+
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+
+
+body {
+  position: absolute;
+  
+  min-width: 100%;
+  min-height: 100vh;
+  height: var(--body-max-height);
+  max-width: var(--body-max-height);
+
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: var(--body-flex-direction);
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.head {
+  min-width: var(--head-width);
+  width: var(--head-width);
+  min-height: var(--head-height);
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  padding: 1rem;
+
+  text-transform: uppercase;
+}
+.head h5
+{
+  padding: 1rem 0.1rem;
+}
+
+
+
+.container {
+  width: var(--container-width);
+  min-height: var(--container-height);
+  max-height: var(--container-height);
+
+  border-radius: 20px;
+
+  box-shadow: 0 0 19px #000, inset 0px 0px 28px #f0f0f030;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem 2rem;
+}
+
+
+
+.container .detail {
+  width: 100%;
+  display: inline-block;
+}
+
+.detail label {
+  width: 120px;
+}
+.detail .value {
+  display: block;
+
+  width: 100%;
+  /* max-width: calc( 100% - 120px - 4.1rem ); */
+
+  text-align: center;
+  justify-content: center;
+
+  background-color: var(--body-bg);
+  color: transparent;
+
+  background-image: linear-gradient(45deg, aqua, blue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -o-background-clip: text;
+
+  /* text-transform: uppercase; */
+  font-size: 1.27rem;
+  
+  outline: none;
+  border: none;
+  border-radius: 20px;
+
+  box-shadow: 0 0 19px #000, inset 0px 0px 28px #fff2;
+}
+.value::-webkit-scrollbar,.value::-moz-scrollbar {
+  display: none;
+}
+
+@media only screen and (min-width: 700px) {
+  :root {
+    --body-flex-direction: row;
+    --body-max-height: 100vh;
+    --body-bg: #101010;
+    --body-fg: #f0f0f091;
+  
+    --container-width: 40%;
+    --container-height: 70vh;
+  
+    --head-width: 40%;
+    --head-height: 70vh;
+  }
+  
+  
+}
+@media only screen and (max-width: 700px) {
+  :root {
+    --body-flex-direction: column;
+    --body-max-height: fit-content;
+    --body-bg: #090909;
+    --body-fg: #f0f0f091;
+  
+    --container-width: 98%;
+    --container-height: 100vh;
+    --profile-width: 98%;
+    --profile-height: 100vh;
+  } 
+}

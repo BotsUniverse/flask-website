@@ -1,0 +1,510 @@
+#screen-shaders{ display: none; width: 0px; max-height: 0px; opacity:0; background-color: transparent; }
+/* variables to change the theme */
+:root{
+  --body-fg: #aaa7;
+  --body-bg: #090909;
+
+  --nav-bg: rgb(0, 26, 16);
+  --nav-fg: rgb(115, 183, 255);
+  --nav-fs: 40px;
+
+  --header-fg: rgb(0, 255, 168);
+  --header-bg: hsl(244, 100%, 2%);
+  --head-fs: 7.3rem;
+
+  --f-d: row;
+
+  --nav-width: 64px;
+  --nav-height: 70vh;
+  --nav-side: right;
+  --top: 15vh;
+
+  --tab-height: 50px;
+  --l-white: hsla(0, 100%, 100%, .5);
+}
+::-webkit-scrollbar
+{
+  background-color: var(--body-bg);
+  box-shadow: inset 0px 0px 2px var(--body-fg);
+}
+::-webkit-scrollbar-thumb
+{
+  background: var(--body-fg);
+}
+*
+{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+}
+body
+{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  
+  background-color: var(--body-bg);
+  color: var(--body-fg);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+/* loader */
+#loader
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 1000000;
+  transition: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#loader svg
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transform: scale(2);
+}
+#loader svg path
+{
+  fill: transparent;
+  stroke: white;
+  stroke-width: 1%;
+  stroke-dasharray: 611;
+  stroke-dashoffset: 611;
+  animation-name: animeSvg;
+  animation-duration: 7.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: reverse;
+}
+@keyframes animeSvg
+{
+  from 
+  {
+    stroke-dashoffset: 0;
+  }
+  to
+  {
+    stroke-dashoffset: 611;
+  }
+}
+
+/* nav-bar */
+.nav
+{
+  position: fixed;
+
+  right: 0;
+  top: var(--top);
+
+  padding: 12px;
+
+  width: var(--nav-width);
+  height: var(--nav-height);
+
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  color: var(--nav-fg);
+  background: var(--nav-bg);
+  box-shadow: 0px 0px 7px #fff2;
+
+  z-index: 100;
+}
+.nav .link
+{
+  position: relative;
+  
+  width: 64px;
+  height: 64px;
+
+  right: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  
+  text-decoration: none;
+  font-size: var(--nav-fs);
+  color: var(--nav-fg);
+  background-color: var(--nav-bg);
+  z-index: 100;
+}
+.link .lt
+{
+  height: 64px;
+  min-width: 0px;
+  width: 0px;
+  font-size: calc(var(--nav-fs) * 0.7);
+  transform: translateX(0px);
+  
+  border-top-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+
+  display: flex;
+  align-items: center; 
+  justify-content: space-around;
+
+  background-color: var(--nav-bg);
+  z-index: 2;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.link i
+{
+  position: absolute;
+  
+  width: 64px;
+  height: 64px;
+  
+  display: flex;
+  align-items: center; 
+  justify-content: space-around;
+  z-index: 3;
+  transform: scale(0.9);
+  
+  color: var(--nav-fg);
+}
+/* nav's hover */
+.nav .link:hover .lt
+{
+  min-width: 150px;
+  transform: translateX(-150px);
+}
+.nav .link:hover i
+{
+  transform: scale(1.1);
+}
+i::before
+{
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  left: 0;
+}
+
+/* the card container */
+/* not visible to user */
+.card-container
+{
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  min-height: 100vh;
+
+  color: hsla(0, 100%, 100%, .7);
+  background-color: transparent;
+
+  transition: .3s;
+}
+
+
+/* the card */
+.card
+{
+  position: relative;
+
+  width: 40%;
+  height: 70vh;
+
+  background-color: var(--body-bg);
+
+  border: 0px solid black;
+  border-radius: 10px;
+
+  padding: 2rem;
+}
+.card-container.active
+{
+  /* transform: translateX(-150px); */
+  z-index: 0;
+}
+.card-container.active .card
+{
+  transform: translateX(0);
+  box-shadow: 0px 0px 35px hsl(0, 0%, 0%),
+  inset 0px 0px 23px hsl(0, 100%, 100%, .1);
+}
+
+.card .card-title
+{
+  padding: 0rem 1.2rem;
+  font-size: 2.8rem;
+
+  color: transparent;
+  background-image: linear-gradient(45deg, hsl(100, 100%, 50%), hsl(214, 100%, 50%));
+  background-clip: text;
+
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -ms-background-clip: text;
+}
+
+.card .tab
+{
+  display: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.card .card-content
+{
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+
+  font-family: monospace;
+  font-size: 0.91rem;
+  
+  color: var(--l-white);
+
+  padding: 1rem 1.7rem;
+}
+.card .next-btn
+{
+  position: absolute;
+  bottom: 2.8rem;
+  left: calc(50% - (8.2rem / 2));
+
+  display: inline-block;
+
+  width: 8.2rem;
+
+  padding: 0.32rem;
+  text-align: center;
+
+  font-size: 1.9rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  color: transparent;
+  background-image: linear-gradient(45deg, hsl(13, 100%, 50%), hsl(313, 100%, 50%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -ms-background-clip: text;
+
+  border: 0px solid black;
+  border-radius: 28px;
+
+  box-shadow: 0px 0px 35px hsl(0, 0%, 0%),
+  inset 0px 0px 23px hsl(0, 100%, 100%, .1);
+
+  cursor: pointer;
+
+  opacity: 0.3;
+
+  transition: .1s;
+}
+.card .next-btn:hover
+{
+  opacity: 1;
+  background-position: 8.2rem;
+  box-shadow: inset 0px 0px 35px hsl(0, 0%, 0%),
+  0px 0px 23px hsl(0, 100%, 100%, .1);
+}
+.card .next-btn:active
+{
+  transform: scale(0.82);
+}
+
+/* make every 2nth container reverse in flex */
+.card-container:nth-child(2n-1)
+{
+  flex-direction: row-reverse;
+}
+
+
+/* the card container which is not active */
+.card-container:not(.active)
+{
+  transition: .3s;
+  transform: translateY(100vh) translateX( calc(0px) );
+  background-color: var(--body-bg);
+  z-index: 100;
+}
+.card-container:not(.active):hover .card .tab
+{
+  scale: 1.2;
+  z-index: 100;
+}
+
+
+/* the card of the not active container */
+.card-container:not(.active) .card
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border:2px solid hsla(0, 0%, 0%, .7);
+}
+
+/* the tab */
+.card-container:not(.active) .card .tab
+{
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 130px;
+  height: var(--tab-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: var(--body-bg);
+
+  border: 2px solid hsl(0, 0%, 0%);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  font-family: cursive;
+  letter-spacing: 5px;
+
+  transform: translateY(calc(-1 * var(--tab-height) + 5px)) translateX(-2px);
+
+  box-shadow: 0px 0px 35px hsl(0, 0%, 0%),
+  inset 0px 0px 23px hsl(0, 100%, 100%, .1);
+
+  transition: 0.3s;
+}
+
+.vision
+{
+  position: relative;
+
+  width: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: -1;
+}
+.vision img
+{
+  width: 500px;
+  background-color: #090909;
+  image-rendering: -webkit-optimize-contrast;
+  filter: grayscale(1);
+}
+.vision.invert img
+{
+  filter: grayscale(1) invert(1);
+}
+a[href="/tts"]
+{
+  text-transform: lowercase;
+}
+.next-btn.footer
+{
+  bottom: 0;
+}
+
+
+
+/* THE RESPONSIVENESS */
+@media only screen and (max-width: 1100px)
+{
+
+  body
+  {
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+  }
+
+  .card
+  {
+    width: 90%;
+    background-color: #090909ee;
+  }
+
+
+  .vision
+  { 
+    position: absolute;
+    width: 90%;
+  }
+
+
+}
+
+
+
+/* for mobile */
+@media only screen and (max-width: 600px)
+{
+
+  .card-container.active .card
+  {
+    border-top-left-radius: 0;
+    height: 80vh;
+  }
+  .card .card-title
+  {
+    padding: 0rem 0.7rem;
+  }
+  
+  
+  .card-container:not(.active)
+  {
+    display: none;
+  }
+  
+
+  .card-container:not(.active) .card .tab
+  {
+    display: none;
+  }
+  
+  
+  
+  
+  .card-container.active .card .next-btn
+  {
+    position: absolute;
+    height: 3rem;
+    top: -3rem;
+    left: 0;
+    opacity: 0.73;
+    border-radius: 20px 20px 0px 0px;
+  }
+  .card-container.active .card .next-btn:hover
+  {
+    opacity: 1;
+  }
+  
+  .invert
+  {
+    display: none;
+  }
+
+  .vision:not(:first-child)
+  {
+    display: none;
+  }
+  
+}
