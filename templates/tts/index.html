@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text To Speech | SPRINGREEN</title>
-  <link type="text/css" rel="stylesheet" href="/static/css/tts.css">
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/tts.css')">
 </head>
 <body>
   <div class="page">
@@ -23,7 +23,7 @@
     <div class="audios"></div>
     
   </div>
-  <script src="/static/HTML_ASSETS/jquery.js"></script>
-  <script type="text/javascript" src="/static/js/tts.js"></script>
+  <script src="{{ url_for('static', filename='HTML_ASSETS/jquery.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/tts.js') }}"></script>
 </body>
 </html>
