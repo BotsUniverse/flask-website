@@ -208,7 +208,7 @@ class User:
             <body>
                 <h1>Welcome {self.username.capitalize()}!</h1>
                 <h2>Click The BUTTON Below To Verify Your Account At SPRINGREEN!</h2>
-                <form action="{domain}/auth/verify" method="GET">
+                <form action="/auth/verify" method="GET">
                     <input type="hidden" name="vfcode" value="{vcode}"></input>
                     <input type="hidden" name="username" value="{self.username}"></input>
                     <input type="submit" value="VERIFY 👍" style="font-size: 20px;">
@@ -223,7 +223,7 @@ class User:
             server.sendmail(sender_email, receiver_email, message.as_string())
             server.quit()
             
-        return '<a href="http://127.0.0.1:7000/verify?vcode={vcode}&uname={username}">http://127.0.0.1:7000/verify?vcode={vcode}&uname={username}</a>'
+        return f'<a href="{domain}/auth/verify?vcode={vcode}&uname={username}">http://127.0.0.1:7000/verify?vcode={vcode}&uname={username}</a>'
 
 
 
