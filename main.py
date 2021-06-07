@@ -231,7 +231,7 @@ def texttospeech():
     user = User(username, print)
 
     # return render_template('tts/index.html', username=username)
-    return "<h1>Oops! Your are in a construction site! Take a <a href='/' style='color:#0007;background:#fff3;padding:.3rem 1rem;border: 1px dotted black;'>step back</a> and come back later.</h1>"
+    return "<h1>Oops! Your are in a construction site! Take a <a href='/' style='color:#0007;background:#0f78;padding:.3rem 1rem;border: 1px dotted black;border-radius:20px;text-decoration:none;'>step back</a> and come back later.</h1>"
 
 # text to speech post method
 @app.route('/fetch/tts', methods=["POST"])
