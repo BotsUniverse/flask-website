@@ -5,7 +5,8 @@ from handler import tts
 from flask import ( Flask, request,
             session, render_template,
             redirect, url_for,
-            send_from_directory, flash
+            send_from_directory, flash,
+            send_file, abort
         )
 import os
 
@@ -15,7 +16,7 @@ log = print
 # create an app's instance and secret key
 app = Flask(__name__)
 app.secret_key = "1qaz2wsx3edc4rfv5tgb6yhn7ujm8k,9o.0p;/!QAZ@WSX#EDC$RFV%TGB^YHN&UJM*IK<(OL>)P:?"
-
+app.config["CLIENT_MP3"] = "static/audio"
 
 
 
@@ -243,6 +244,13 @@ def posttexttospeech():
     return path
 
 
+@app.route('/fetch/audio/<fname>', methods=["POST", "GET"])
+def fetchaudio(fname):
+    try:
+        return send_from_directory(app.config['CLIENT_MP3'], fname, as_attachment=True)
+    except FileNotFoundError:
+        abort(404)
+    
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=False, port=7200)
