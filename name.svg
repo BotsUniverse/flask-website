@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" style="border:2px solid black">
+  <text x="1" y="35" font-size="28" stroke="black" stroke-width="2.8" stroke-dasharray="110" fill="none" stroke-linecap="round">
+    SPRINGREEN
+    <animate attributeName="stroke-dashoffset" values="0;110;220;" dur="3" repeatCount="indefinite"></animate>
+  </text>
+</svg>

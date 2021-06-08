@@ -244,13 +244,22 @@ def posttexttospeech():
     return path
 
 
+# IN DEVELOMPENT :::
 @app.route('/fetch/audio/<fname>', methods=["POST", "GET"])
 def fetchaudio(fname):
     try:
         return send_from_directory(app.config['CLIENT_MP3'], fname, as_attachment=True)
     except FileNotFoundError:
         abort(404)
+
+@app.route('/file/html/<fname>')
+def htmlDisplayer(fname):
+    return send_file(fname)
     
+
+# @app.route('/static/<path:path>')
+# def send_static(path):
+#     return path
 
 if __name__ == "__main__":
     app.run(debug=False, port=7200)
