@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="100px" viewBox="0 0 115 25">
-  <text x="0" y="18" font-size="15.4" stroke="#0f8" stroke-width="2.8" stroke-dasharray="110" fill="none" stroke-linecap="round" x="0">
+  <text x="0" y="18" font-size="15.4" stroke="#0f8" stroke-width="2.53" stroke-dasharray="110" fill="none" stroke-linecap="round" x="0">
     SPRINGREEN
     <animate attributeName="stroke-dashoffset" values="220;110;0;0;" dur="10" repeatCount="indefinite"/>
   </text>
