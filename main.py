@@ -13,10 +13,14 @@ import os
 
 log = print
 
+
+
 # create an app's instance and secret key
 app = Flask(__name__)
 app.secret_key = "1qaz2wsx3edc4rfv5tgb6yhn7ujm8k,9o.0p;/!QAZ@WSX#EDC$RFV%TGB^YHN&UJM*IK<(OL>)P:?"
 app.config["CLIENT_MP3"] = "static/audios"
+
+
 
 
 
@@ -41,11 +45,15 @@ def root():
 
 
 
+
+
 # the favicon.ico
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'images/logo.ico', mimetype='image/vnd.microsoft.icon')
+
+
 
 
 
@@ -58,6 +66,8 @@ def login():
 @app.route('/signup')
 def signup():
     return render_template('login/signup.html')
+
+
 
 
 
@@ -96,6 +106,7 @@ def auth_signup():
         "error": "",
         "result": "success"
     }
+
 
 
 
@@ -144,11 +155,12 @@ def auth_login():
 
 
 
+
 # verifiy the user from his mail
-@app.route('/auth/verify', methods = ['GET'])
-def auth_verify():
-    username = request.args['username']
-    vfcode = request.args['vfcode']
+@app.route('/auth/verify/<username>/<vcode>')
+def auth_verify(username, vcode):
+    username = str(username).lower().strip()
+    vfcode = str(vcode)
 
     user = User(username, log)
     if user._is_verified():
@@ -260,6 +272,21 @@ def htmlDisplayer():
 @app.route('/static/<path:path>')
 def send_static(path):
     return send_file(path)
+
+
+
+@app.route('/auth/verify/resend', methods=["POST"])
+def resend_vcode():
+    username = request.form.get('username').lower().strip()
+    domain = request.form.get('domain')
+    user = User(username, log)
+    
+    if user._is_verified():
+        return "already verified"
+    
+    user.resend_vf_code(domain)
+    return True
+
 
 if __name__ == "__main__":
     app.run(debug=False, port=7200)

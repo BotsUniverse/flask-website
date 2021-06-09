@@ -207,12 +207,15 @@ class User:
         <html>
             <body>
                 <h1>Welcome {self.username.capitalize()}!</h1>
-                <h2>Click The BUTTON Below To Verify Your Account At SPRINGREEN!</h2>
-                <form action="{domain}/auth/verify" method="GET">
-                    <input type="hidden" name="vfcode" value="{vcode}"></input>
-                    <input type="hidden" name="username" value="{self.username}"></input>
-                    <input type="submit" value="VERIFY 👍" style="font-size: 20px;">
-                </form>
+                <h2>Click the below link to <b>verify</b> your account at SPRINGREEN.</h2>
+                <a href="{domain}/auth/verify/{self.username}/{vcode}">{domain}/auth/verify/{self.username}/{vcode}</a>
+                <br>
+                <br>
+                <h6>If you did not try logging, then PLEASE dont click the link or open the link, this might allow someone else to use your account in SPRINGREEN.</h6>
+                <hr>
+                <br>
+                <br>
+                <code>From SPRINGREEN</code>
             </body>
         </html>
         """
@@ -223,7 +226,7 @@ class User:
             server.sendmail(sender_email, receiver_email, message.as_string())
             server.quit()
             
-        return f'<a href="{domain}/auth/verify?vcode={vcode}&uname={self.username}">http://127.0.0.1:7000/verify?vcode={vcode}&uname={self.username}</a>'
+        return f'<a href="{domain}/auth/verify/{self.username}/{vcode}>{domain}/auth/verify/{self.username}/{vcode}</a>'
 
 
 
@@ -267,7 +270,8 @@ class User:
             _details.append(self.get_detail(det))
         
         return _details
-    
+
+
 
     # creates a new user and
     # edits all the values in the class
@@ -290,6 +294,8 @@ class User:
         db.close()
         self.log.info(f"<class User>: Changed {req} to {val} where username is {self.username}")
         return True
+
+
 
     # a function to destroy the room within one month
     # this function returns no value and is prossed in thread
@@ -390,7 +396,7 @@ class User:
         if self._in_database():
             return False
         
-        vcode = generate_vcode(160)
+        vcode = generate_vcode(200)
         username = self.username
         db = sqlite3.connect('database/database.db')
         cursor = db.cursor()
@@ -410,6 +416,20 @@ class User:
 
         return True
     
+
+    # resend a verification code.
+    def resend_vf_code(self, domain):
+        if not self._in_database():
+            return False
+
+        if self._is_verified():
+            return False
+        
+        vfcode = self.get_detail(5)
+        
+        self.send_vf_code(self.emails[self._get_id()], vfcode, domain)
+
+
 
     # verify the user
     # return true if if verified now else False if already verified
