@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="82%" view-box="0 0 100 100">
   <path
     stroke="white"
+    stroke-width="1"
     stroke-dasharray="611"
     stroke-dashoffset="0"
     d="M 7 74, L 21 34, L 50 3, L 80 34, L 93 73, L 50 88, L 7 74, L 50 43, L 93 73, L 80 34, L 50 53, L 21 34, L 50 3, L 50 43, L 57 48, L 50 53, 50 88"

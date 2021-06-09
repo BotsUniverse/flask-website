@@ -16,7 +16,7 @@ log = print
 # create an app's instance and secret key
 app = Flask(__name__)
 app.secret_key = "1qaz2wsx3edc4rfv5tgb6yhn7ujm8k,9o.0p;/!QAZ@WSX#EDC$RFV%TGB^YHN&UJM*IK<(OL>)P:?"
-app.config["CLIENT_MP3"] = "static/audio"
+app.config["CLIENT_MP3"] = "static/audios"
 
 
 
@@ -231,8 +231,8 @@ def texttospeech():
     username = session['username']
     user = User(username, print)
 
-    # return render_template('tts/index.html', username=username)
-    return "<h1>Oops! Your are in a construction site! Take a <a href='/' style='color:#0007;background:#0f78;padding:.3rem 1rem;border: 1px dotted black;border-radius:20px;text-decoration:none;'>step back</a> and come back later.</h1>"
+    return render_template('tts/index.html', username=username)
+    # return "<h1>Oops! Your are in a construction site! Take a <a href='/' style='color:#0007;background:#0f78;padding:.3rem 1rem;border: 1px dotted black;border-radius:20px;text-decoration:none;'>step back</a> and come back later.</h1>"
 
 # text to speech post method
 @app.route('/fetch/tts', methods=["POST"])
@@ -252,9 +252,9 @@ def fetchaudio(fname):
     except FileNotFoundError:
         abort(404)
 
-@app.route('/file/html/<fname>')
-def htmlDisplayer(fname):
-    return send_file(fname)
+@app.route('/helper')
+def htmlDisplayer():
+    return render_template('helper.html')
     
 
 # @app.route('/static/<path:path>')

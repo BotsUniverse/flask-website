@@ -4,8 +4,9 @@ import shutil
 import os
 import time
 
+main_path = "static/audios/"
+
 def generate_file_path():
-    main_path = "static/audios/"
     files = [
         file for path, dir, file in os.walk(main_path)
       ]
@@ -14,10 +15,11 @@ def generate_file_path():
     if len(files) < 1:
       return main_path + "temp_audio_0.mp3"
     else:
-      return main_path + f"temp_audio_{len(files)+1}.mp3"
+      return main_path + f"temp_audio_{len(files)}.mp3"
 
 def tts(text:str, gender:str, speechrate:str):
     file_path = generate_file_path()
+    print(file_path)
     def threader(text, file_path):
       engine = pyttsx3.init()
       engine.save_to_file(text.strip(), file_path)
@@ -27,4 +29,4 @@ def tts(text:str, gender:str, speechrate:str):
 
     _thread.start_new_thread(threader, (text, file_path))
 
-    return file_path
+    return "fetch/audio/" + file_path.replace(main_path, '')
