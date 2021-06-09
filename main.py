@@ -271,7 +271,7 @@ def htmlDisplayer():
 
 @app.route('/static/<path:path>')
 def send_static(path):
-    return send_file(path)
+    return path
 
 
 
