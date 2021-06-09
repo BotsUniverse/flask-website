@@ -257,9 +257,9 @@ def htmlDisplayer():
     return render_template('helper.html')
     
 
-# @app.route('/static/<path:path>')
-# def send_static(path):
-#     return path
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_file(path)
 
 if __name__ == "__main__":
     app.run(debug=False, port=7200)
