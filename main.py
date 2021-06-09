@@ -269,10 +269,15 @@ def htmlDisplayer():
     return render_template('helper.html')
     
 
-@app.route('/static/<path:path>')
+@app.route('/_static/<path:path>')
 def send_static(path):
-    return path
-
+    try:
+        # return path
+        return send_file(f'static/{path}')
+    except FileNotFoundError:
+        return abort(404)
+    except Exception as error:
+        return abort(500, error)
 
 
 @app.route('/auth/verify/resend', methods=["POST"])
