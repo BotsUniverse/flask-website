@@ -1,4 +1,6 @@
 #screen-shaders{ display: none; width: 0px; max-height: 0px; opacity:0; background-color: transparent; }
+
+
 /* variables to change the theme */
 :root{
   --body-fg: #aaa7;
@@ -507,4 +509,24 @@ a[href="/tts"]
     display: none;
   }
   
+}
+
+
+.dialog  {
+  min-width: 200px;
+  width: 80%;
+
+  height: 70vh;
+  min-height: 300px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  -o-backdrop-filter: blur(10px);
+  background-color:hsl(0, 0%, 0%, .55);
+
+  font-size: 1.9rem;
+  color: white;
+
+  z-index: 10000;
 }

@@ -264,10 +264,6 @@ def fetchaudio(fname):
     except FileNotFoundError:
         abort(404)
 
-@app.route('/helper')
-def htmlDisplayer():
-    return render_template('helper.html')
-    
 
 @app.route('/_static/<path:path>')
 def send_static(path):
@@ -294,4 +290,4 @@ def resend_vcode():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=7200)
+    app.run(debug=True, port=1000, host="0.0.0.0")
