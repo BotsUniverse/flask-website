@@ -218,6 +218,8 @@ def private_profile():
 
 
 
+
+# the plubic profile of a user
 @app.route('/@<username>')
 def public_user(username):
     _username = str(username).lower()
@@ -234,6 +236,7 @@ def public_user(username):
 
 
 
+
 # text to speech root
 @app.route('/tts')
 def texttospeech():
@@ -246,6 +249,9 @@ def texttospeech():
     return render_template('tts/index.html', username=username)
     # return "<h1>Oops! Your are in a construction site! Take a <a href='/' style='color:#0007;background:#0f78;padding:.3rem 1rem;border: 1px dotted black;border-radius:20px;text-decoration:none;'>step back</a> and come back later.</h1>"
 
+
+
+
 # text to speech post method
 @app.route('/fetch/tts', methods=["POST"])
 def posttexttospeech():
@@ -256,7 +262,9 @@ def posttexttospeech():
     return path
 
 
-# IN DEVELOMPENT :::
+
+
+# In beta mode the tts fetcher
 @app.route('/fetch/audio/<fname>', methods=["POST", "GET"])
 def fetchaudio(fname):
     try:
@@ -265,6 +273,9 @@ def fetchaudio(fname):
         abort(404)
 
 
+
+
+# the path that the html(s) will find their static(s)
 @app.route('/_static/<path:path>')
 def send_static(path):
     try:
@@ -276,6 +287,10 @@ def send_static(path):
         return abort(500, error)
 
 
+
+
+
+# a method to resend the user's vfcode
 @app.route('/auth/verify/resend', methods=["POST"])
 def resend_vcode():
     username = request.form.get('username').lower().strip()
@@ -289,5 +304,9 @@ def resend_vcode():
     return True
 
 
+
+
+
+# run the app only if this file is run.
 if __name__ == "__main__":
     app.run(debug=True, port=1000, host="0.0.0.0")

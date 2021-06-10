@@ -20,7 +20,7 @@ body {
   overflow-x: hidden;
 
   display: flex;
-  flex-direction: var(--body-flex-direction);
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -28,9 +28,8 @@ body {
 
 
 .head {
-  min-width: var(--head-width);
-  width: var(--head-width);
-  min-height: var(--head-height);
+  min-width: 100%;
+  width: 100%;
 
 
   display: flex;
@@ -41,69 +40,139 @@ body {
   padding: 1rem;
 
   text-transform: uppercase;
-}
-.head h5
-{
-  padding: 1rem 0.1rem;
-}
-
-
-
-.container {
-  width: var(--container-width);
-  min-height: var(--container-height);
-  max-height: var(--container-height);
-
-  border-radius: 20px;
-
-  box-shadow: 0 0 19px #000, inset 0px 0px 28px #f0f0f030;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  padding: 1rem 2rem;
-}
-
-
-
-.container .detail {
-  width: 100%;
-  display: inline-block;
-}
-
-.detail label {
-  width: 120px;
-}
-.detail .value {
-  display: block;
-
-  width: 100%;
-  /* max-width: calc( 100% - 120px - 4.1rem ); */
-
-  text-align: center;
-  justify-content: center;
-
-  background-color: var(--body-bg);
-  color: transparent;
-
-  background-image: linear-gradient(45deg, aqua, blue);
+  
+  background-image: linear-gradient(45deg, #00fff2, #ff00bf);
   background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -o-background-clip: text;
 
-  /* text-transform: uppercase; */
-  font-size: 1.27rem;
+  color: rgba(0,0,0,0);
+}
+.head h5
+{
+  padding: 1rem 0.1rem;
+  color: white;
+}
+
+
+.form
+{
+  min-width: 300px;
+  width: 80%;
   
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  border: 2px solid transparent;
+  border-radius: 20px;
+  box-shadow: -3px -3px 10px rgba(255,255,255,0.3),
+              inset  -4px -4px 3px rgba(0,0,0),
+              inset  1px 1px 10px rgba(0,0,0);
+}
+.form div
+{
+  font-size: 18px;
+  width: 250px;
+}
+.form div label
+{
+  display: block;
+  color: aqua;
+}
+.form div input
+{
+  display: block;
+  background-color: #121234;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 18px;
+  padding: 3px 10px;
+  color: #00ccff99;
+  font-family: Verdana;
+  width: 250px;
+  box-shadow: inset -1px -1px 2px rgba(255,255,255,0.3),
+              inset 1px 1px 3px rgba(0,0,0);
+}
+input:active
+{
   outline: none;
   border: none;
-  border-radius: 20px;
-
-  box-shadow: 0 0 19px #000, inset 0px 0px 28px #fff2;
+  box-shadow: inset 3px 3px 1px rgba(255,255,255,0.3),
+              inset  -1px -1px 3px rgba(0,0,0);
 }
-.value::-webkit-scrollbar,.value::-moz-scrollbar {
-  display: none;
+input::placeholder
+{
+  opacity: 0.43;
+}
+input:disabled
+{
+  background-color: #131421;
+}
+.fa-eye
+{
+  border: 1px solid aqua;
+  padding: 2px;
+  opacity: 0.2;
+}
+button, #submit, #validate
+{
+  font-size: 18px;
+  color: rgb(0, 153, 255, 0.7);
+  padding: 2px 5px;
+  min-width: 160px;
+  background-color: #121234;
+  transform: translateY(-40px);
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: -1px -1px 3px rgba(255,255,255,0.3),
+              inset  -1px -1px 3px rgba(0,0,0);
+}
+#validate 
+{
+  transform: translate(0px);
+}
+button:active, #submit:active
+{
+  box-shadow: inset -1px -1px 3px rgba(255,255,255,0.3),
+              inset  -1px -1px 3px rgba(0,0,0);
+}
+button:hover, #submit:hover
+{
+  color: rgb(0, 153, 255, 1);
+}
+button:disabled
+{
+  color: rgba(255,255,255, 0.6);
+  background-color: transparent;
+  box-shadow: none;
+}
+i.fa-eye.vis
+{
+  opacity: 1;
+}
+i.fa-eye:hover
+{
+  opacity: 1;
+  color: white;
+}
+.ot
+{
+  font-size: 1em;
+  color: #ffffff88;
+}
+.ot a
+{
+  color: rgb(255, 0, 200, 0.8);
+}
+.ot hr
+{
+  margin: 10px 0px;
 }
 
 @media only screen and (min-width: 700px) {

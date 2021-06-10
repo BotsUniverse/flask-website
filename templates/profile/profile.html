@@ -5,23 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script>
+  <script type="text/javascript">
     const details = '{{ details }}';
   </script>
 
-  <script src="{{ url_for('static', filename='HTML_ASSETS/jquery.js') }}"></script>
-  <script src="{{ url_for('static', filename='HTML_ASSETS/node_modules/twitter-bootstrap/js/bootstrap-alert.js') }}"></script>
-  <script src="{{ url_for('static', filename='HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.js') }}"></script>
-  <script src="{{ url_for('static', filename='HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/default.js') }}"></script>
+  <script type="text/javascript" src="/_static/HTML_ASSETS/jquery.js"></script>
+  <script type="text/javascript" src="/_static/HTML_ASSETS/node_modules/twitter-bootstrap/js/bootstrap-alert.js"></script>
+  <script type="text/javascript" src="/_static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/_static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/js/bootstrap.bundle.js"></script>
+  <script type="text/javascript" src="/_static/js/default.js"></script>
 
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='HTML_ASSETS/fontawesome-free-5.15.1-web/css/all.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="/_static/HTML_ASSETS/fontawesome-free-5.15.1-web/css/all.css">
+  <link rel="stylesheet" href="/_static/HTML_ASSETS/bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css">
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='HTML_ASSETS/css/defaults.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='HTML_ASSETS/css/nav-bar.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='HTML_ASSETS/css/profile.css') }}">
+  <link rel="stylesheet" href="/_static/css/defaults.css">
+  <link rel="stylesheet" href="/_static/css/nav-bar.css">
+  <link rel="stylesheet" href="/_static/css/profile.css">
 
 </head>
 <body>
@@ -38,30 +38,30 @@
     <h5>Take a look at your account details! You will be able to edit your details after some time. The page is under development and will be available in the future.</h5>
   </div>
 
-  <div class="container">
+  <div class="form">
 
 
       <div class="detail">
         <label>Username</label>
-        <div class="value">{{ details[1] }}</div>
+        <input class="value" value="{{ details[1] }}" disabled/>
       </div>
     
       
       <div class="detail">
         <label>Email</label>
-        <div class="value">{{ details[2] }}</div>
+        <input class="value" value="{{ details[2] }}" disabled/>
       </div>
     
       
       <div class="detail">
         <label>Recovery Email</label>
-        <div class="value">{{ details[3] }}</div>
+        <input class="value" value="{{ details[3] }}" disabled/>
       </div>
 
       
       <div class="detail">
         <label>Password</label>
-        <div class="value">{{ details[4] }}</div>
+        <input class="value" value="{{ details[4] }}" disabled/>
       </div>
 
 

@@ -512,21 +512,32 @@ a[href="/tts"]
 }
 
 
-.dialog  {
+.dialog {
   min-width: 200px;
   width: 80%;
-
-  height: 70vh;
-  min-height: 300px;
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   -moz-backdrop-filter: blur(10px);
   -o-backdrop-filter: blur(10px);
-  background-color:hsl(0, 0%, 0%, .55);
+  
+  background-color:hsl(0, 100%, 100%);
 
   font-size: 1.9rem;
-  color: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 
   z-index: 10000;
+}
+.dialog button {
+  position: absolute;
+  top: .1rem;
+  right: .1rem;
+  display: inline-block;
+  padding: 1rem;
+  color: red;
+  background: #00f2
 }

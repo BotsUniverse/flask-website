@@ -484,8 +484,6 @@ class User:
         db.commit()
         db.close()
 
-        shutil.rmtree('templates/rooms')
-        os.mkdir("templates/rooms")
-
         return True
 
+# User.clean_all()
