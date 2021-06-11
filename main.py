@@ -9,6 +9,7 @@ from flask import ( Flask, request,
             send_file, abort
         )
 import os
+from cryptrooper import Crypto
 
 
 log = print
@@ -301,8 +302,36 @@ def resend_vcode():
         return "already verified"
     
     user.resend_vf_code(domain)
-    return True
+    return "sent"
 
+
+
+
+# the contact page
+@app.route('/contact')
+def contact_page():
+    return render_template('contact/contact.html')
+
+
+
+
+@app.route('/private/<username>/<secretkey>/<pagename>')
+def private_page(username, secretkey, pagename):
+    # uname = a, secretkey = b, pagename = c
+    lv1 = Crypto(secretkey, "private").encode()['result']
+    lv2 = Crypto(lv1, username).encode()['result']
+    lv3 = Crypto(lv2, pagename).encode()['result']
+    lv4 = Crypto(lv3, lv3).encode()['result']
+
+    with open('database/waste.txt', 'r') as orgi:
+        org_level = orgi.read()
+        orgi.close()
+    
+    if lv4 != org_level:
+        return abort(400)
+    
+    else:
+        return send_file('database/contact.txt')
 
 
 

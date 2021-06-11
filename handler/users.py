@@ -427,7 +427,7 @@ class User:
         
         vfcode = self.get_detail(5)
         
-        self.send_vf_code(self.emails[self._get_id()], vfcode, domain)
+        return self.send_vf_code(self.emails[self._get_id()], vfcode, domain)
 
 
 

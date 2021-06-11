@@ -3,3 +3,4 @@ pyttsx3
 gunicorn
 gevent
 Werkzeug
+cryptrooper
